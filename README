@@ -1,0 +1,113 @@
+################################################################################
+#                                                                              #
+#  Permanent Compressed Archive (gpca)                                         #
+#                                                                              #
+#  (C) 2024 OnEhIppY, Domero, Groningen                                        #
+#                                                                              #
+################################################################################
+
+Permanent Compressed Archive (gpca) is a Perl module that provides a way to store 
+and retrieve compressed data in a permanent archive. This module leverages the 
+`Compress::Zlib` module for compression and the `gfio` module for file operations.
+
+## Features
+
+   - Store data with unique keys.
+   - Retrieve data using keys or indices.
+   - Search for data using partial key matches.
+   - Data compression to save space.
+
+## Installation
+
+To use the `gpca` module, you need to have the following Perl modules installed:
+
+   - `gfio`
+   - `Compress::Zlib`
+
+You can install these modules from CPAN using the following commands:
+
+   cpan install gfio
+   cpan install Compress::Zlib
+
+## Usage
+
+Here is a basic example to get you started with the `gpca` module:
+
+   #!/usr/bin/perl
+
+   use strict;
+   use warnings;
+   use gpca;
+
+   # File paths for the example
+   my $data_file = 'example_data.gpca';
+
+   # Initialize the gpca module
+   my $gpca = gpca::open($data_file);
+
+   # Add some data to the archive
+   $gpca->put('key1', 'This is some test data for key1.');
+   $gpca->put('key2', 'Another piece of data for key2.');
+   $gpca->put('key3', 'More test data stored under key3.');
+
+   # Retrieve data using keys
+   print "Data for key1: ", $gpca->get('key1'), "\n";
+   print "Data for key2: ", $gpca->get('key2'), "\n";
+   print "Data for key3: ", $gpca->get('key3'), "\n";
+
+   # Retrieve data by index
+   print "Data at index 0: ", $gpca->index(0), "\n";
+   print "Data at index 1: ", $gpca->index(1), "\n";
+   print "Data at index 2: ", $gpca->index(2), "\n";
+
+   # Search for data using a partial key match
+   my @results = $gpca->search('key');
+   print "Search results for 'key':\n";
+   foreach my $result (@results) {
+       print "Key: $result->{key}, Data: $result->{data}\n";
+   }
+
+   # Clean up the example files
+   unlink($data_file, "$data_file.gpca");
+
+## Methods
+
+### open
+
+   my $gpca = gpca::open($file);
+
+Opens a new archive or an existing one, initializing internal structures.
+
+### put
+
+   $gpca->put($key, $data);
+
+Stores a string in the archive with a given key.
+
+### get
+
+   my $data = $gpca->get($key);
+
+Retrieves a string from the archive using the given key.
+
+### index
+
+   my $data = $gpca->index($index);
+
+Retrieves a string from the archive using the given index.
+
+### search
+
+   my @results = $gpca->search($search);
+
+Searches for strings in the archive that match the given search term.
+
+## Author
+
+   OnEhIppY, Domero, Groningen
+
+## License
+
+   This module is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
+
+################################################################################

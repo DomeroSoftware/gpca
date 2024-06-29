@@ -1,0 +1,9 @@
+Changes
+LICENSE
+Makefile.PL
+MANIFEST
+META.json
+README
+examples/gpca.pl
+lib/gpca.pm
+t/gpca.t

@@ -1,0 +1,35 @@
+{
+   "abstract": "Permanent Compressed Archive",
+   "author": [
+      "OnEhIppY",
+      "Domero",
+      "Groningen"
+   ],
+   "dynamic_config": true,
+   "license": "perl",
+   "name": "gpca",
+   "version": "1.0.1",
+   "resources": {
+      "homepage": "https://github.com/DomeroSoftware/gpca",
+      "repository": {
+         "type": "git",
+         "url": "https://github.com/DomeroSoftware/gpca.git",
+         "web": "https://github.com/DomeroSoftware/gpca"
+      }
+   },
+   "prereqs": {
+      "runtime": {
+         "requires": {
+            "perl": "5.010001",
+            "gfio": "0",
+            "Compress::Zlib": "0"
+         }
+      }
+   },
+   "provides": {
+      "gpca": {
+         "file": "lib/gpca.pm",
+         "version": "1.0.1"
+      }
+   }
+}

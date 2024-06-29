@@ -1,0 +1,16 @@
+Revision history for Perl extension gpca
+
+1.0.1  Wed Jul 1 2024
+    - Added comprehensive test suite in `t/gpca.t`.
+    - Improved error handling and verbose output for file operations.
+    - Enhanced documentation for clarity and completeness.
+    - Updated README file with usage examples and installation instructions.
+    - Made module CPAN and PAUSE compatible.
+    - Added support for searching data by partial key match.
+
+1.0.0  Tue Jun 30 2020
+    - Initial release of gpca module.
+    - Implemented basic functionality for storing and retrieving compressed data.
+    - Supported operations include storing data with keys, retrieving data by keys or indices.
+    - Included methods for initializing archives, adding data, retrieving compressed data, and searching.
+
