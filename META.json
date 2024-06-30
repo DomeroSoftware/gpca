@@ -8,7 +8,7 @@
    "dynamic_config": true,
    "license": "perl",
    "name": "gpca",
-   "version": "1.0.1",
+   "version": "1.0.2",
    "resources": {
       "homepage": "https://github.com/DomeroSoftware/gpca",
       "repository": {
@@ -29,7 +29,7 @@
    "provides": {
       "gpca": {
          "file": "lib/gpca.pm",
-         "version": "1.0.1"
+         "version": "1.0.2"
       }
    }
 }

@@ -108,6 +108,7 @@ Searches for strings in the archive that match the given search term.
 
 ## License
 
-   This module is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
+   This module is free software; you can redistribute it and/or modify it under
+   the same terms as Perl itself.
 
 ################################################################################
