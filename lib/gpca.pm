@@ -17,7 +17,7 @@ use gfio;
 use Compress::Zlib;
 
 # Module version
-our $VERSION = '1.0.1';
+our $VERSION = '1.0.2';
 
 # Inherit from Exporter
 our @ISA = qw(Exporter);
@@ -52,7 +52,7 @@ Opens a new archive or an existing one, initializing internal structures.
 
 sub open {
     my ($file) = @_;
-    my $self = { dat => $file, hdr => "$file.gpca", mem => [] };
+    my $self = { dat => $file, hdr => "$file.", mem => [] };
     bless $self;
     return $self->_init();
 }
@@ -242,11 +242,31 @@ Finds the position, length, and size of the string associated with the given key
 =cut
 
 sub _find {
-    my ($self, $key) = @_;
-    for my $line (@{$self->{mem}}) {
-        return [$line->[1], $line->[2], $line->[3]] if $line->[0] eq $key;
-    }
-    return undef;
+    my ($self, $find) = @_;
+    my $num = $#{$self->{mem}} + 1;
+    my $bn = int(log($num) / log(2));
+    my $bp = 2**$bn;
+    my $fnd = 0;
+    my $jump = $bp;
+    my $res = undef;
+
+    # Binary Search
+    do {
+        $jump >>= 1;
+        my ($key, $pos, $len, $size) = @{$self->{mem}[$bp - 1]};
+        if (!defined $key || (($key cmp $find) > 0)) {
+            $bp -= $jump;
+        } elsif (($key cmp $find) == 0) {
+            $res = $bp - 1;
+            $fnd = 1;
+        } else {
+            $bp += $jump;
+        }
+        $bn--;
+    } until ($fnd || ($bn < 0));
+
+    # Return Results
+    return $fnd ? $self->_index($res) : undef
 }
 
 ################################################################################
@@ -255,7 +275,7 @@ sub _find {
 
   $gpca->_index($index);
 
-Finds the position, length, and size of the string at the given index.
+Returns the position, length, and size of the string at the given index.
 
 =cut
 
