@@ -1,6 +1,9 @@
 Revision history for Perl extension gpca
 
-1.0.1  Wed Jul 1 2024
+1.0.2  Sun Jun 30 2024
+    - Changed the itterating search of _find into a binary search.
+
+1.0.1  Sat Jun 29 2024
     - Added comprehensive test suite in `t/gpca.t`.
     - Improved error handling and verbose output for file operations.
     - Enhanced documentation for clarity and completeness.
